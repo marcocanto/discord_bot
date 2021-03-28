@@ -14,6 +14,7 @@ code='AQD-ORMrz71z-HwlT36QL79ElnFw6oIQ9JRnacrtZINBMkDk210f35_gwolauJz-HpL2UI4LKV
 # r = requests.get(URL, params=params)
 # print(r.url)
 # json = json.loads(r.text)
+TOKEN=ODI1MDQ1OTMzNjE1MDg3NjM2.YF4N5w.bxvoRFK8E3gxEtHiOFIFzf-b8cA
 REFRESH_TOKEN=AQBzTuijm17rcYm69X7O0tauUj0TMPOYhdjkzIeaQ3iUHGKdSZaTu5JiZdV0AAJxTarVoGBDZ2TDedoy_lI2WWxGuSLTaZxSeo4UkC8JJCmqJuVT3XN37O8skvJ-lL1wZuA
 refresh_token = os.getenv('REFRESH_TOKEN')
 API_URL = 'https://accounts.spotify.com/api/token'
