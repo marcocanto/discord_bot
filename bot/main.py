@@ -3,12 +3,10 @@ import os
 import requests
 import json
 import re
-from dotenv import load_dotenv
 
 client_id = '28753b42e9824af2a5b5277b6dbf3865'
 client_secret = '34eaa15829f04f3ba13b439f61a6d1d4'
 
-load_dotenv()
 client = discord.Client()
 code='AQD-ORMrz71z-HwlT36QL79ElnFw6oIQ9JRnacrtZINBMkDk210f35_gwolauJz-HpL2UI4LKV6V1oeOibWc-8jqXfglwEalnTXfKpOCOH-LNmmE08Oy2h9q9g7ecp_372oicBdl7P023gM5bckJ7iPPnI43UjRdWaItU4yEMVV5lU3KPu1uT0Hb83R5SUXONQ'
 
