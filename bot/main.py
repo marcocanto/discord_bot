@@ -50,6 +50,7 @@ async def on_message(message):
         return
     
     if 'spotify' in message.content:
+        print(message.content)
         refresh_token()
         embeds = message.embeds
         if len(embeds) == 1:
