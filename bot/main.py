@@ -5,18 +5,21 @@ import json
 import re
 import spotipy
 import spotipy.util as util
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
-client_id = '28753b42e9824af2a5b5277b6dbf3865'
-client_secret = '34eaa15829f04f3ba13b439f61a6d1d4'
-redirect_url = 'https://example.com/'
-scope = 'playlist-modify-private'
+load_dotenv()
 
 client = discord.Client()
-token = util.prompt_for_user_token(username='marcocanto', redirect_uri=redirect_url, scope=scope, client_id=client_id, client_secret=client_secret)
-spotify = spotipy.Spotify(auth=token)
+
 username = 'marcocanto'
+scope = 'playlist-modify-private'
+
+cache_handler = spotipy.cache_handler.CacheFileHandler(cache_path='.cache-marcocanto')
+auth_manager = spotipy.oauth2.SpotifyOAuth(scope='playlist-modify-private',
+                                            cache_handler=cache_handler, 
+                                            show_dialog=True)
+
+spotify = spotipy.Spotify(auth_manager=auth_manager)
 
 spotify.trace = False
 
@@ -38,7 +41,6 @@ async def on_message(message):
     if 'spotify' in message.content:
         print("Message Content:")
         print(message.content)
-        # refresh_token()
         embeds = message.embeds
         url = embeds[0].url
         x = re.findall(r"^(https:\/\/open.spotify.com\/track\/|spotify:user:spotify:playlist:)([a-zA-Z0-9]+)(.*)$",url)
