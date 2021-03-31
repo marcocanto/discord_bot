@@ -3,9 +3,9 @@ import os
 import requests
 import json
 import re
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
+load_dotenv()
 client_id = '28753b42e9824af2a5b5277b6dbf3865'
 client_secret = '34eaa15829f04f3ba13b439f61a6d1d4'
 
@@ -15,7 +15,7 @@ refresh_token = os.getenv('REFRESH_TOKEN')
 API_URL = 'https://accounts.spotify.com/api/token'
 r_params = {'grant_type': 'refresh_token', 'refresh_token': refresh_token,
 'client_id':client_id, 'client_secret': client_secret}
-PLAYLIST_URL = 'https://api.spotify.com/v1/playlists/spotify:playlist:4uzB4Xdaa3xBEqef3FzF0o/tracks'
+PLAYLIST_URL = 'https://api.spotify.com/v1/playlists/4uzB4Xdaa3xBEqef3FzF0o/tracks'
 SONG_URL = 'https://api.spotify.com/v1/tracks/'
 
 r = requests.post(API_URL, r_params)
@@ -50,7 +50,9 @@ async def on_message(message):
             uri = ["spotify:track:" + track_id]
             params = {"uris": uri}
             try:
+                print(track_id)
                 r = requests.post(PLAYLIST_URL, headers=headers, params=params)
+                print(r.content)
             except requests.exceptions.RequestException as e:  # This is the correct syntax
                 print(e)
                 r = requests.post(API_URL, r_params)
