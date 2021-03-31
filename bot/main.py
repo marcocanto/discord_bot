@@ -27,6 +27,8 @@ headers = {
 
 def refresh_token():
     r = requests.post(API_URL, r_params)
+    print("Refreshing Token")
+    print(r.content)
     access_token = r.json().get("access_token") 
     headers = {
         "Authorization": 'Bearer ' + access_token,
@@ -50,6 +52,7 @@ async def on_message(message):
         return
     
     if 'spotify' in message.content:
+        print("Message Content:")
         print(message.content)
         refresh_token()
         embeds = message.embeds
@@ -67,6 +70,7 @@ async def on_message(message):
                 print(e)
                 refresh_token()
                 r = requests.post(PLAYLIST_URL, headers=headers, params=params)
+                print(r.content)
                 
 
             name, artist = get_song(track_id)
