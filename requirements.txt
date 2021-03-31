@@ -1,5 +1,3 @@
 discord.py
-requests
-json
-re
+requests 
 dotenv
