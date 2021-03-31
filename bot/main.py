@@ -25,6 +25,14 @@ headers = {
     "Content-Type": "application/json"
     }
 
+def refresh_token():
+    r = requests.post(API_URL, r_params)
+    access_token = r.json().get("access_token") 
+    headers = {
+        "Authorization": 'Bearer ' + access_token,
+        "Content-Type": "application/json"
+        }
+
 def get_song(track_id):
     song = requests.get(SONG_URL + track_id, headers = headers)
     song_json = song.json()
@@ -42,6 +50,7 @@ async def on_message(message):
         return
     
     if 'spotify' in message.content:
+        refresh_token()
         embeds = message.embeds
         if len(embeds) == 1:
             url = embeds[0].url
@@ -55,8 +64,7 @@ async def on_message(message):
                 print(r.content)
             except requests.exceptions.RequestException as e:  # This is the correct syntax
                 print(e)
-                r = requests.post(API_URL, r_params)
-                access_token = r.json().get("access_token") 
+                refresh_token()
                 r = requests.post(PLAYLIST_URL, headers=headers, params=params)
                 
 
