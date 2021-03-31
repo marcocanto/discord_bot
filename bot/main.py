@@ -3,9 +3,9 @@ import os
 import requests
 import json
 import re
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 client_id = '28753b42e9824af2a5b5277b6dbf3865'
 client_secret = '34eaa15829f04f3ba13b439f61a6d1d4'
 
