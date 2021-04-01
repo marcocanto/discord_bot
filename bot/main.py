@@ -5,9 +5,9 @@ import json
 import re
 import spotipy
 import spotipy.util as util
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 client = discord.Client()
 
@@ -51,7 +51,7 @@ async def on_message(message):
         print(results)
         name, artist = get_song(track_id)
         
-        added_msg = "added **{}** by **{}** to playlist.".format(name, artist)
+        added_msg = "Added **{}** by **{}** to the amalgamation.".format(name, artist)
         print(added_msg)
         await message.channel.send(added_msg)
             
