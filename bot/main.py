@@ -42,6 +42,7 @@ async def on_message(message):
         print("Message Content:")
         print(message.content)
         embeds = message.embeds
+        print(embeds)
         url = embeds[0].url
         x = re.findall(r"^(https:\/\/open.spotify.com\/track\/|spotify:user:spotify:playlist:)([a-zA-Z0-9]+)(.*)$",url)
         track_id = x[0][1]
