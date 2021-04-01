@@ -38,22 +38,26 @@ async def on_message(message):
     if message.author == client.user:
         return
     
-    if 'spotify' in message.content:
-        print("Message Content:")
-        print(message.content)
-        embeds = message.embeds
-        print(embeds)
-        url = embeds[0].url
-        x = re.findall(r"^(https:\/\/open.spotify.com\/track\/|spotify:user:spotify:playlist:)([a-zA-Z0-9]+)(.*)$",url)
-        track_id = x[0][1]
-        track_ids = [track_id]
-        results = spotify.user_playlist_add_tracks(username, '4uzB4Xdaa3xBEqef3FzF0o',  track_ids)
-        print(results)
-        name, artist = get_song(track_id)
-        
-        added_msg = "added **{}** by **{}** to playlist.".format(name, artist)
-        print(added_msg)
-        await message.channel.send(added_msg)
+    print("Message Content:")
+    print(message.content)
+
+    embeds = message.embeds
+    print("Number of embeds = " + str(len(embeds)))
+
+    for embed in embeds:
+        if 'spotify' in embed.url:
+            url = embed.url
+            print(url)
+            x = re.findall(r"^(https:\/\/open.spotify.com\/track\/|spotify:user:spotify:playlist:)([a-zA-Z0-9]+)(.*)$",url)
+            track_id = x[0][1]
+            track_ids = [track_id]
+            results = spotify.user_playlist_add_tracks(username, '4uzB4Xdaa3xBEqef3FzF0o',  track_ids)
+            print(results)
+            name, artist = get_song(track_id)
+            
+            added_msg = "added **{}** by **{}** to playlist.".format(name, artist)
+            print(added_msg)
+            await message.channel.send(added_msg)
             
 # test
 
