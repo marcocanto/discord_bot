@@ -5,9 +5,9 @@ import json
 import re
 import spotipy
 import spotipy.util as util
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
+load_dotenv()
 
 client = discord.Client()
 
@@ -41,21 +41,19 @@ async def on_message(message):
     print("Message Content:")
     print(message.content)
 
-    for word in message.content.split(' '):
-
-        if 'spotify' in word:
-            url = word
-            print("URL: " + url)
-            x = re.findall(r"^(https:\/\/open.spotify.com\/track\/|spotify:user:spotify:playlist:)([a-zA-Z0-9]+)(.*)$",url)
-            track_id = x[0][1]
-            track_ids = [track_id]
-            results = spotify.user_playlist_add_tracks(username, '4uzB4Xdaa3xBEqef3FzF0o',  track_ids)
-            print(results)
-            name, artist = get_song(track_id)
-            
-            added_msg = "added **{}** by **{}** to playlist.".format(name, artist)
-            print(added_msg)
-            await message.channel.send(added_msg)
+    if 'spotify' in message.content:
+        msg = message.content
+        x = re.findall(r"(https:\/\/open.spotify.com\/track\/|spotify:user:spotify:playlist:)([a-zA-Z0-9]+)(.*)",msg)
+        print(x)
+        track_id = x[0][1]
+        track_ids = [track_id]
+        results = spotify.user_playlist_add_tracks(username, '4uzB4Xdaa3xBEqef3FzF0o',  track_ids)
+        print(results)
+        name, artist = get_song(track_id)
+        
+        added_msg = "added **{}** by **{}** to playlist.".format(name, artist)
+        print(added_msg)
+        await message.channel.send(added_msg)
             
 # test
 
