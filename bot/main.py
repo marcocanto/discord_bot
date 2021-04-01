@@ -5,9 +5,9 @@ import json
 import re
 import spotipy
 import spotipy.util as util
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 client = discord.Client()
 
