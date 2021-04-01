@@ -1,6 +1,6 @@
 # discord_bot
 
-A simple discord bot that automatically adds spotify link posted in chats to a spotify playlist.
+A simple discord bot hosted on Heroku that automatically adds spotify links posted in chats to a spotify playlist.
 
 
 ### Future work
