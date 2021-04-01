@@ -5,9 +5,9 @@ import json
 import re
 import spotipy
 import spotipy.util as util
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
+load_dotenv()
 
 client = discord.Client()
 
@@ -41,13 +41,11 @@ async def on_message(message):
     print("Message Content:")
     print(message.content)
 
-    embeds = message.embeds
-    print("Number of embeds = " + str(len(embeds)))
+    for word in message.content.split(' '):
 
-    for embed in embeds:
-        if 'spotify' in embed.url:
-            url = embed.url
-            print(url)
+        if 'spotify' in word:
+            url = word
+            print("URL: " + url)
             x = re.findall(r"^(https:\/\/open.spotify.com\/track\/|spotify:user:spotify:playlist:)([a-zA-Z0-9]+)(.*)$",url)
             track_id = x[0][1]
             track_ids = [track_id]
